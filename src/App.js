@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react"
+import { useMovieModel } from './models/useMovieModel';
 function App() {
+  const { movies ,getMovies,patchMovieById}= useMovieModel()
+  React.useEffect(()=>{
+    getMovies()
+  },[])
+
+  const onClickImageCallback= (id,data)=>{
+    patchMovieById(id,data).then(getMovies)
+    
+  }
+
+  console.log({movies})
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {movies?.map((movie,index)=>(<span key={index}style={{border: movie.like ? "10px solid blue":"none"}} onClick={()=>onClickImageCallback(movie.id,{like: !movie.like})}><img src={movie.poster} alt="poster"/></span>))}
     </div>
   );
 }
