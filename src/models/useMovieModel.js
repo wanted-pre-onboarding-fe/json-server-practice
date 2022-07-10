@@ -14,8 +14,7 @@ export const useMovieModel=()=>{
 
   const patchMovieById = async (id,data)=> {
    return await movieRequest.patch(id,data)
-  
-    
+   
   }
 
   return {
