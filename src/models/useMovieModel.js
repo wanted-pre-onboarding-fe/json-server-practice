@@ -3,13 +3,13 @@ import { movieRequest } from "../services/movieService";
 export const useMovieModel=()=>{
   const [movies, setMovies]= React.useState(null);
   
-  const getMoviesCallback = (response)=>{
+  const updateMovies = (response)=>{
     setMovies(response.data)
   }
 
   const getMovies = async ()=>{
     const response = await movieRequest.get("")
-    getMoviesCallback(response)
+    updateMovies(response)
   }
 
   const patchMovieById = async (id,data)=> {
