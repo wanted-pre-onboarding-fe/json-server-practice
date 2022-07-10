@@ -3,12 +3,12 @@ export class HttpRequest {
   constructor(service){
     this.service = service;
   }
-  async get(url,callback){
-    const response = await this.service.get(url)
-    callback(response)
+   get(url){
+    return  this.service.get(url).catch((error)=>{console.log("error: ",error)})
   }
-  async patch(id,data){
-    this.service.patch(`/${id}`,data)
+   patch(id,data){
+    return  this.service.patch(`/${id}`,data)
   }
   
 }
+

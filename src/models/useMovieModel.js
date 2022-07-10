@@ -7,12 +7,14 @@ export const useMovieModel=()=>{
     setMovies(response.data)
   }
 
-  const getMovies = ()=>{
-    movieRequest.get("",getMoviesCallback)
+  const getMovies = async ()=>{
+    const response = await movieRequest.get("")
+    getMoviesCallback(response)
   }
 
   const patchMovieById = async (id,data)=> {
-    movieRequest.patch(id,data)
+   return await movieRequest.patch(id,data)
+  
     
   }
 
