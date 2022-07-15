@@ -1,25 +1,24 @@
 import React from "react";
-import { movieRequest } from "../services/movieService";
-export const useMovieModel=()=>{
-  const [movies, setMovies]= React.useState(null);
-  
-  const updateMovies = (response)=>{
-    setMovies(response.data)
-  }
+import { movieRequest } from "../http/factory/movie";
+export const useMovieModel = () => {
+	const [movies, setMovies] = React.useState(null);
 
-  const getMovies = async ()=>{
-    const response = await movieRequest.get("")
-    updateMovies(response)
-  }
+	const updateMovies = (response) => {
+		setMovies(response.data);
+	};
 
-  const patchMovieById = async (id,data)=> {
-   return await movieRequest.patch(id,data)
-   
-  }
+	const getMovies = async () => {
+		const response = await movieRequest.get("");
+		updateMovies(response);
+	};
 
-  return {
-    movies,
-    getMovies,
-    patchMovieById
-  }
-}
+	const patchMovieById = async (id, data) => {
+		return await movieRequest.patch(id, data);
+	};
+
+	return {
+		movies,
+		getMovies,
+		patchMovieById,
+	};
+};
